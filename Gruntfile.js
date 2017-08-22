@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
+      options: {
+        separator: ';',
+      },
+      dist: {
+        src: ['public/lib/**/*.js', 'public/client/**/*.js'],
+        dest: 'dist/scripts.js'
+      }
     },
 
     mochaTest: {
@@ -21,6 +28,12 @@ module.exports = function(grunt) {
     },
 
     uglify: {
+      my_target: {
+        files: [{
+          src: 'dist/scripts.js',
+          dest: 'dist/output.min.js'
+        }]
+      }
     },
 
     eslint: {
@@ -30,6 +43,12 @@ module.exports = function(grunt) {
     },
 
     cssmin: {
+      target: {
+        files: [{
+          src: 'public/style.css',
+          dest: 'dist/stylesheet.min.css',
+        }]
+      }
     },
 
     watch: {
